@@ -28,7 +28,7 @@ export default function MealDetailsScreen({ route, navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: itemTitle,
-      headerRight: () => <FavoriteIconButton color="white" />,
+      headerRight: () => <FavoriteIconButton color="white" id={itemId} />,
     });
   }, [navigation, itemTitle]);
 

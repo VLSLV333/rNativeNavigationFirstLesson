@@ -18,6 +18,12 @@ import MealDetailsScreen from "./screens/MealDetailsScreen";
 
 import FavoritesScreen from "./screens/FavoritesScreen";
 
+// import FavoriteContextProvider from "./store/context/favorites-context";
+
+import { store } from "./store/redux/store";
+
+import { Provider } from "react-redux";
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -71,46 +77,50 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#351401",
-            },
-            headerTintColor: "white",
-            contentStyle: {
-              backgroundColor: "#3f2f25",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
+      {/* <FavoriteContextProvider> */}
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#351401",
+              },
+              headerTintColor: "white",
+              contentStyle: {
+                backgroundColor: "#3f2f25",
+              },
             }}
-          />
-          <Stack.Screen
-            name="Meals Overview"
-            component={MealsOverviewScreen}
-            // options={({ route, navigation }) => {
-            //   const title = route.params.title
-            //   return {
-            //     title
-            //   }
-            // }}
-          />
-          <Stack.Screen
-            name="MealDetails"
-            component={MealDetailsScreen}
-            // options={{
-            //   headerRight: () => {
-            //     return <Button title="Tap here!"/>
-            //   }
-            // }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Meals Overview"
+              component={MealsOverviewScreen}
+              // options={({ route, navigation }) => {
+              //   const title = route.params.title
+              //   return {
+              //     title
+              //   }
+              // }}
+            />
+            <Stack.Screen
+              name="MealDetails"
+              component={MealDetailsScreen}
+              // options={{
+              //   headerRight: () => {
+              //     return <Button title="Tap here!"/>
+              //   }
+              // }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+      {/* </FavoriteContextProvider> */}
     </>
   );
 }
