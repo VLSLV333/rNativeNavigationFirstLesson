@@ -8,6 +8,8 @@ import List from "../components/MealDetail/List";
 
 import Subtitle from "../components/MealDetail/Subtitle";
 
+import FavoriteIconButton from "../components/FavoriteIconButton";
+
 import { MEALS } from "../data/dummy-data";
 
 export default function MealDetailsScreen({ route, navigation }) {
@@ -26,6 +28,7 @@ export default function MealDetailsScreen({ route, navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: itemTitle,
+      headerRight: () => <FavoriteIconButton color="white" />,
     });
   }, [navigation, itemTitle]);
 
